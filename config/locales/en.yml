@@ -3,3 +3,4 @@ en:
   label_due_today_issues: "Due today"
   label_overdue_issues: "Overdue"
   label_higher_priority_issues: "Higher priority"
+  label_near_due_issues: "Due in next 7 days"
