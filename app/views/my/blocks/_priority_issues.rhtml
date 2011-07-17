@@ -1,41 +1,45 @@
 <h3><%= l(:label_priority_issues) %>
 
 <%
-  due_today_issues = Issue.visible.open.find(:all,
+  open_issues = Issue.visible.open
+  today = Date.today
+  current_user_id = User.current.id
+
+  due_today_issues = open_issues.find(:all,
     :conditions => {
-      :assigned_to_id => User.current.id,
+      :assigned_to_id => current_user_id,
       :due_date => Date.today,
     },
     :include => [:status, :project, :tracker, :priority],
     :order => "#{Project.table_name}.id")
 
-  overdue_issues = Issue.visible.open.find(:all,
+  overdue_issues = open_issues.find(:all,
     :conditions => [
       "assigned_to_id = ? and due_date < ?",
-      User.current.id,
-      Date.today,
+      current_user_id,
+      today,
     ],
     :include => [:status, :project, :tracker, :priority],
     :order => "due_date")
 
   default_priority = IssuePriority.find_by_is_default(true)
   if default_priority
-    higher_priority_issues = Issue.visible.open.find(:all,
+    higher_priority_issues = open_issues.find(:all,
       :conditions => [
         "assigned_to_id = ? and #{IssuePriority.table_name}.position > ?",
-        User.current.id,
+        current_user_id,
         default_priority.position
       ],
       :include => [:status, :project, :tracker, :priority],
       :order => "#{IssuePriority.table_name}.position desc, due_date")
   end
 
-  near_due_issues = Issue.visible.open.find(:all,
+  near_due_issues = open_issues.find(:all,
     :conditions => [
       "assigned_to_id = ? and ? < due_date and due_date <= ?",
-      User.current.id,
-      Date.today,
-      Date.today + 7
+      current_user_id,
+      today,
+      today + 7
     ],
     :include => [:status, :project, :tracker, :priority],
     :order => "due_date")
