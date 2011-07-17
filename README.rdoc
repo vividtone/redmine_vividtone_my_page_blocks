@@ -1,0 +1,3 @@
+= vividtone_mypage_blocks
+
+Description goes here
