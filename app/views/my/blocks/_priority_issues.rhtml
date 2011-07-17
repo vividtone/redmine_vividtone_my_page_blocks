@@ -32,6 +32,8 @@
       ],
       :include => [:status, :project, :tracker, :priority],
       :order => "#{IssuePriority.table_name}.position desc, due_date")
+  else
+    higher_priority_issues = []
   end
 
   near_due_issues = open_issues.find(:all,
