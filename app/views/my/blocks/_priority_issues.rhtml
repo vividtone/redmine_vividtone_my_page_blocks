@@ -1,1 +1,17 @@
-<h3><%= l(:label_priority_issues) %></h3>
+<h3><%= l(:label_priority_issues) %>
+
+<%
+  due_today_issues = Issue.visible.open.find(:all,
+    :conditions => {
+      :assigned_to_id => User.current.id,
+      :due_date => Date.today,
+    },
+    :include => [:status, :project, :tracker, :priority],
+    :order => "#{Project.table_name}.id")
+%>
+
+<h4><%= l(:label_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
+<%= render :partial => 'issues/list_simple', :locals => { :issues => due_today_issues} %>
+
+<h4><%= l(:label_over_due_issues) %> (<%= due_today_issues.count %>)</h4>
+<%= render :partial => 'issues/list_simple', :locals => { :issues => due_today_issues} %>
