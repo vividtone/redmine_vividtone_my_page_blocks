@@ -12,6 +12,3 @@
 
 <h4><%= l(:label_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => { :issues => due_today_issues} %>
-
-<h4><%= l(:label_over_due_issues) %> (<%= due_today_issues.count %>)</h4>
-<%= render :partial => 'issues/list_simple', :locals => { :issues => due_today_issues} %>
