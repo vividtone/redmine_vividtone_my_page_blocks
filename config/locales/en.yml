@@ -2,3 +2,4 @@ en:
   label_priority_issues: "Priority issues"
   label_due_today_issues: "Due today"
   label_overdue_issues: "Overdue"
+  label_higher_priority_issues: "Higher priority"
