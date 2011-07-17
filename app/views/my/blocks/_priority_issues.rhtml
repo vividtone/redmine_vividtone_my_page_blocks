@@ -8,7 +8,20 @@
     },
     :include => [:status, :project, :tracker, :priority],
     :order => "#{Project.table_name}.id")
+
+  overdue_issues = Issue.visible.open.find(:all,
+    :conditions => [
+      "assigned_to_id = ? and due_date < ?",
+      User.current.id,
+      Date.today,
+    ],
+    :include => [:status, :project, :tracker, :priority],
+    :order => "due_date")
+
 %>
 
 <h4><%= l(:label_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => { :issues => due_today_issues} %>
+
+<h4><%= l(:label_overdue_issues) %> (<%= overdue_issues.count %>)</h4>
+<%= render :partial => 'issues/list_simple', :locals => { :issues => overdue_issues} %>
