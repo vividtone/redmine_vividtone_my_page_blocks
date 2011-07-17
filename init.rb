@@ -2,9 +2,9 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_vividtone_mypage_blocks do
   name 'Redmine Vividtone Mypage Blocks plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'MAEDA Go'
+  description 'Add some my page blocks'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url ''
+  author_url ''
 end
