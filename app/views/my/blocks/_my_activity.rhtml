@@ -21,4 +21,4 @@
 <% end -%>
 </div>
 
-<p class="small"><%= link_to l(:label_activity_view_all), :controller => 'activities', :action => 'index', :id => nil, :user_id => current_user, :from => events_by_day.keys.first %></p>
+<p class="small"><%= link_to l(:label_activity_view_all), :controller => 'activities', :action => 'index', :id => nil, :user_id => current_user, :from => events_by_day.keys.first %> | <%= link_to l(:label_overall_activity), :controller => 'activities', :action => 'index' %></p>
