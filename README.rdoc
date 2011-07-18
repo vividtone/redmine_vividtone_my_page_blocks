@@ -3,9 +3,9 @@
 This is a plugin for Redmine to add some my page blocks.
 
 
-== new blocks ==
+== new blocks
 
-=== Priority Issues ===
+=== Priority Issues
 
 Lists the following issues.
 
@@ -14,7 +14,7 @@ Lists the following issues.
 * due today
 * due in next 7 days
 
-=== Leaved Issues ===
+=== Leaved Issues
 
 Lists issues may have been forgotten. Issues which satisfies all the
 following conditions are displayed.
@@ -23,7 +23,7 @@ following conditions are displayed.
 * no updates for 7 days
 * due date is not set.
 
-=== My Activities ===
+=== My Activities
 
 Show the users last 10 activities.
 
