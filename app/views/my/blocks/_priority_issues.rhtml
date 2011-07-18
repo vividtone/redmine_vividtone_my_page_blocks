@@ -1,4 +1,4 @@
-<h3><%= l(:label_priority_issues) %>
+<h3><%= l(:label_vmpb_priority_issues) %>
 
 <%
   open_issues = Issue.visible.open
@@ -47,16 +47,16 @@
     :order => "due_date")
 %>
 
-<h4><%= l(:label_higher_priority_issues) %> (<%= higher_priority_issues.count %>)</h4>
+<h4><%= l(:label_vmpb_higher_priority_issues) %> (<%= higher_priority_issues.count %>)</h4>
   <%= render :partial => 'issues/list_simple', :locals => {:issues => higher_priority_issues} unless higher_priority_issues.empty? %>
 
-<h4><%= l(:label_overdue_issues) %> (<%= overdue_issues.count %>)</h4>
+<h4><%= l(:label_vmpb_overdue_issues) %> (<%= overdue_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => {:issues => overdue_issues} unless overdue_issues.empty? %>
 
-<h4><%= l(:label_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
+<h4><%= l(:label_vmpb_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => {:issues => due_today_issues}  unless due_today_issues.empty? %>
 
-<h4><%= l(:label_near_due_issues) %> (<%= near_due_issues.count %>)</h4>
+<h4><%= l(:label_vmpb_near_due_issues) %> (<%= near_due_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => {:issues => near_due_issues} unless near_due_issues.empty? %>
 
 <p class="small">
