@@ -58,3 +58,9 @@
 
 <h4><%= l(:label_near_due_issues) %> (<%= near_due_issues.count %>)</h4>
 <%= render :partial => 'issues/list_simple', :locals => {:issues => near_due_issues} unless near_due_issues.empty? %>
+
+<p class="small">
+<%= link_to l(:label_issue_view_all), :controller => 'issues',
+      :action => 'index', :set_filter => 1, :assigned_to_id => 'me',
+      :sort => 'priority:desc,due_date:asc' %>
+</p>
