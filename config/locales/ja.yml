@@ -4,3 +4,4 @@ ja:
   label_overdue_issues: "期限超過"
   label_higher_priority_issues: "優先度高"
   label_near_due_issues: "7日以内に期限到来"
+  label_activity_view_all: "すべての活動を表示"
