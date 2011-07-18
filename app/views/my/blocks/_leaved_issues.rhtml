@@ -1,0 +1,11 @@
+<%
+  leaved_issues = Issue.visible.open.find(:all,
+    :conditions => ["(assigned_to_id = ? or assigned_to_id is null) and due_date is null and #{Issue.table_name}.updated_on < ?", User.current.id, Date.today - 7],
+    :include => [:status, :project, :tracker, :priority],
+    :order => "#{IssuePriority.table_name}.position desc, due_date")
+%>
+
+
+<h3><%= l(:label_vmpb_leaved_issues) %></h3>
+
+<%= render :partial => 'issues/list_simple', :locals => {:issues => leaved_issues} %>
