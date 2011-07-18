@@ -1,4 +1,4 @@
-= vividtone_mypage_blocks
+= vividtone_my_page_blocks
 
 This is a plugin for Redmine to add some my page blocks.
 
@@ -9,4 +9,4 @@ This is a plugin for Redmine to add some my page blocks.
 
 == Installation
 
-ruby script/plugin install git://github.com/vividtone/redmine_vividtone_mypage_blocks.git
+ruby script/plugin install git://github.com/vividtone/redmine_vividtone_my_page_blocks.git
