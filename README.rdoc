@@ -1,3 +1,12 @@
 = vividtone_mypage_blocks
 
-Description goes here
+This is a plugin for Redmine to add some my page blocks.
+
+== Blocks to add
+
+* Priority Issues - high priority, overdue, due today, or due in next 7 days
+* My Activities
+
+== Installation
+
+ruby script/plugin install git://github.com/vividtone/redmine_vividtone_mypage_blocks.git
