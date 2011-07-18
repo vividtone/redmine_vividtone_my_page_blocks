@@ -5,6 +5,6 @@ Redmine::Plugin.register :redmine_vividtone_my_page_blocks do
   author 'MAEDA Go (FAR END Technologies)'
   description 'Add some my page blocks'
   version '0.0.1'
-  url ''
+  url 'http://github.com/vividtone/redmine_vividtone_my_page_blocks'
   author_url ''
 end
