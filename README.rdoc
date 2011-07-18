@@ -2,10 +2,31 @@
 
 This is a plugin for Redmine to add some my page blocks.
 
-== Blocks to add
 
-* Priority Issues - high priority, overdue, due today, or due in next 7 days
-* My Activities
+== new blocks ==
+
+=== Priority Issues ===
+
+Lists the following issues.
+
+* higher priority
+* overdue
+* due today
+* due in next 7 days
+
+=== Leaved Issues ===
+
+Lists issues may have been forgotten. Issues which satisfies all the
+following conditions are displayed.
+
+* assigned to the user or assigned to nobody
+* no updates for 7 days
+* due date is not set.
+
+=== My Activities ===
+
+Show the users last 10 activities.
+
 
 == Installation
 
