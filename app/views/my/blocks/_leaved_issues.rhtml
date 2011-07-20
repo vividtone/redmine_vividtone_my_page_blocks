@@ -8,4 +8,4 @@
 
 <h3><%= l(:label_vmpb_leaved_issues) %> (<%= leaved_issues.count %>)</h3>
 
-<%= render :partial => 'issues/list_simple', :locals => {:issues => leaved_issues} %>
+<%= render :partial => 'issues/list_simple', :locals => {:issues => leaved_issues[0...30]} %>
