@@ -3,6 +3,7 @@
     :conditions => ["(assigned_to_id = ? or assigned_to_id is null) and due_date is null and #{Issue.table_name}.updated_on < ?", User.current.id, Date.today - 7],
     :include => [:status, :project, :tracker, :priority],
     :order => "#{Issue.table_name}.updated_on desc")
+  leaved_issues.reject! {|item| ! item.project.users.include?(User.current)}
 %>
 
 
