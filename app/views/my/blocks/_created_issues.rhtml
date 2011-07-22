@@ -1,0 +1,13 @@
+<%
+  created_issues = Issue.visible.open.find(:all,
+    :include => [:status, :project, :tracker, :priority],
+    :conditions => ["#{Issue.table_name}.created_on >= ?", Date.today - 3],
+    :order => "#{Issue.table_name}.created_on desc",
+    :limit => 10)
+  created_issues.reject! {|item| ! item.project.users.include?(User.current)}
+%>
+
+
+<h3><%= l(:label_vmpb_created_issues) %> (<%= created_issues.count %>)</h3>
+
+<%= render :partial => 'issues/list_simple', :locals => {:issues => created_issues} %>
