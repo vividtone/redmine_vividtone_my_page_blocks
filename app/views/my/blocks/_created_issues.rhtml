@@ -1,7 +1,8 @@
 <%
+  default_issue_status = IssueStatus.find_by_is_default(true)
   created_issues = Issue.visible.open.find(:all,
     :include => [:status, :project, :tracker, :priority],
-    :conditions => ["#{Issue.table_name}.created_on >= ? and #{Issue.table_name}.created_on = #{Issue.table_name}.updated_on", Date.today - 3],
+    :conditions => ["#{Issue.table_name}.created_on >= ? and #{IssueStatus.table_name}.id = ?", Date.today - 3, default_issue_status.id],
     :order => "#{Issue.table_name}.created_on desc",
     :limit => 10)
   created_issues.reject! {|item| ! item.project.users.include?(User.current)}
