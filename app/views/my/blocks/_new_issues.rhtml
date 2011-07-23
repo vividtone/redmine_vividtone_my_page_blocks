@@ -1,13 +1,13 @@
 <%
   default_issue_status = IssueStatus.find_by_is_default(true)
-  created_issues = Issue.visible.open.find(:all,
+  new_issues = Issue.visible.open.find(:all,
     :include => [:status, :project, :tracker, :priority],
     :conditions => ["(assigned_to_id = ? or assigned_to_id is null) and #{Issue.table_name}.created_on >= ? and #{IssueStatus.table_name}.id = ?", User.current.id, Date.today - 3, default_issue_status.id],
     :order => "#{Issue.table_name}.created_on desc")
-  created_issues.reject! {|item| ! item.project.users.include?(User.current)}
+  new_issues.reject! {|item| ! item.project.users.include?(User.current)}
 %>
 
 
-<h3><%= l(:label_vmpb_created_issues) %></h3>
+<h3><%= l(:label_vmpb_new_issues) %></h3>
 
-<%= render :partial => 'issues/list_simple', :locals => {:issues => created_issues[0...10]} %>
+<%= render :partial => 'issues/list_simple', :locals => {:issues => new_issues[0...10]} %>
