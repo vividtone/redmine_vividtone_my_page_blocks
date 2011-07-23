@@ -31,3 +31,14 @@ Show the users last 10 activities.
 == Installation
 
 ruby script/plugin install git://github.com/vividtone/redmine_vividtone_my_page_blocks.git
+
+== License
+
+GNU General Public License, version 2 (GPLv2)
+
+== Author
+
+MAEDA Go (FAR END Technologies Corporation)
+
+http://twitter.com/g_maeda
+http://www.facebook.com/MAEDA.Go
