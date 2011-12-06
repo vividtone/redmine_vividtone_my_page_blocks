@@ -3,12 +3,12 @@
 <%
   open_issues = Issue.visible.open
   today = Date.today
-  current_user_id = User.current.id
+  current_user_ids = [User.current.id] + User.current.group_ids
 
   due_today_issues = open_issues.find(:all,
     :conditions => [
-      "(assigned_to_id = ? or assigned_to_id is null) and due_date = ?",
-      current_user_id,
+      "(assigned_to_id in (?) or assigned_to_id is null) and due_date = ?",
+      current_user_ids + User.current.group_ids,
       Date.today
     ],
     :include => [:status, :project, :tracker, :priority],
@@ -17,8 +17,8 @@
 
   overdue_issues = open_issues.find(:all,
     :conditions => [
-      "(assigned_to_id = ? or assigned_to_id is null) and due_date < ?",
-      current_user_id,
+      "(assigned_to_id in (?) or assigned_to_id is null) and due_date < ?",
+      current_user_ids,
       today,
     ],
     :include => [:status, :project, :tracker, :priority],
@@ -29,8 +29,8 @@
   if default_priority
     higher_priority_issues = open_issues.find(:all,
       :conditions => [
-        "(assigned_to_id = ? or assigned_to_id is null) and #{IssuePriority.table_name}.position > ?",
-        current_user_id,
+        "(assigned_to_id in (?) or assigned_to_id is null) and #{IssuePriority.table_name}.position > ?",
+        current_user_ids,
         default_priority.position
       ],
       :include => [:status, :project, :tracker, :priority],
@@ -42,8 +42,8 @@
 
   near_due_issues = open_issues.find(:all,
     :conditions => [
-      "(assigned_to_id = ? or assigned_to_id is null) and ? < due_date and due_date <= ?",
-      current_user_id,
+      "(assigned_to_id in (?) or assigned_to_id is null) and ? < due_date and due_date <= ?",
+      current_user_ids,
       today,
       today + 7
     ],
