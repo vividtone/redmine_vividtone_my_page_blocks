@@ -14,7 +14,7 @@ Lists the following issues.
 * due today
 * due in next 7 days
 
-=== Leaved Issues
+=== Neglected Issues
 
 Lists issues may have been forgotten. Issues which satisfies all the
 following conditions are displayed.
