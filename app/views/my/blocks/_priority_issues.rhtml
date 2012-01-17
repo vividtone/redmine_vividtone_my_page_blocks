@@ -8,7 +8,7 @@
   due_today_issues = open_issues.find(:all,
     :conditions => [
       "(assigned_to_id in (?) or assigned_to_id is null) and due_date = ?",
-      current_user_ids + User.current.group_ids,
+      current_user_ids,
       Date.today
     ],
     :include => [:status, :project, :tracker, :priority],
