@@ -1,5 +1,9 @@
 en:
-  label_vmpb_priority_issues: "Priority issues"
+  priority_issues: "Priority issues"
+  my_activities: "My activities"
+  neglected_issues: "Neglected issues"
+  new_issues: "Recently created issues"
+  doing_issues: "Doing issues"
   label_vmpb_due_today_issues: "Due today"
   label_vmpb_overdue_issues: "Overdue"
   label_vmpb_higher_priority_issues: "Higher priority"
@@ -8,6 +12,3 @@ en:
   label_vmpb_overall_issues: "All issues"
   label_vmpb_all_my_activities: "All my activities"
   label_vmpb_overall_activities: "All activities"
-  label_vmpb_neglected_issues: "Neglected issues"
-  label_vmpb_new_issues: "Recently created issues"
-  label_vmpb_doing_issues: "Doing issues"

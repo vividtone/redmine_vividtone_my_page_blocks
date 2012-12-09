@@ -8,6 +8,6 @@
 %>
 
 
-<h3><%= l(:label_vmpb_neglected_issues) %> (<%= neglected_issues.count %>)</h3>
+<h3><%= l(:neglected_issues) %> (<%= neglected_issues.count %>)</h3>
 
 <%= render :partial => 'issues/list_simple', :locals => {:issues => neglected_issues[0...30]} %>

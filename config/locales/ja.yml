@@ -1,5 +1,9 @@
 ja:
-  label_vmpb_priority_issues: "優先チケット"
+  priority_issues: "優先チケット"
+  my_activities: "自分の活動"
+  neglected_issues: "放置チケット"
+  new_issues: "新着チケット"
+  doing_issues: "作業中チケット"
   label_vmpb_due_today_issues: "今日が期限"
   label_vmpb_overdue_issues: "期限超過"
   label_vmpb_higher_priority_issues: "優先度高"
@@ -8,6 +12,3 @@ ja:
   label_vmpb_overall_issues: "すべてのチケット"
   label_vmpb_all_my_activities: "自分のすべての活動"
   label_vmpb_overall_activities: "すべての活動"
-  label_vmpb_neglected_issues: "放置チケット"
-  label_vmpb_new_issues: "新着チケット"
-  label_vmpb_doing_issues: "作業中チケット"
