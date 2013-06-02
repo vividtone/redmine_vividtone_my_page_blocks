@@ -4,7 +4,7 @@
   events_by_day = events.group_by(&:event_date)
 %>
 
-<h3><%= l(:label_activity) %></h3>
+<h3><%= l(:my_activity) %></h3>
 
 <div id="activity">
 <% events_by_day.keys.sort.reverse.each do |day| %>
