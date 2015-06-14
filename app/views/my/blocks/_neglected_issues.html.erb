@@ -1,13 +1,12 @@
 <%
   current_user_ids = [User.current.id] + User.current.group_ids
-  neglected_issues = Issue.visible.open.find(:all,
-    :conditions => ["(assigned_to_id in (?) or assigned_to_id is null) and due_date is null and #{Issue.table_name}.updated_on < ?", current_user_ids, Date.today - 7],
-    :include => [:status, :project, :tracker, :priority],
-    :order => "#{Issue.table_name}.updated_on desc")
-  neglected_issues.reject! {|item| ! item.project.users.include?(User.current)}
+
+  neglected_issues = Issue.visible.open
+    .where(["(assigned_to_id in (?) or assigned_to_id is null) and due_date is null and #{Issue.table_name}.updated_on < ?", current_user_ids, Date.today - 7])
+    .order(updated_on: :desc)
 %>
 
 
 <h3><%= l(:neglected_issues) %> (<%= neglected_issues.count %>)</h3>
 
-<%= render :partial => 'issues/list_simple', :locals => {:issues => neglected_issues[0...30]} %>
+<%= render :partial => 'issues/list_simple', :locals => {:issues => neglected_issues.first(30)} %>
