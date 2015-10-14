@@ -18,6 +18,10 @@ Lists the following issues.
 
 Lists recently created issues.
 
+### Doing Issues
+
+Lists my open issues (status is not "New").
+
 ### Neglected Issues
 
 Lists issues may have been forgotten. Issues which satisfies all the
