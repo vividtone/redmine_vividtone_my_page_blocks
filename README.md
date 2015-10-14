@@ -14,6 +14,10 @@ Lists the following issues.
 * due today
 * due in next 7 days
 
+### New Issues
+
+Lists recently created issues.
+
 ### Neglected Issues
 
 Lists issues may have been forgotten. Issues which satisfies all the
