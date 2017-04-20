@@ -1,8 +1,9 @@
 <%=
   current_user_ids = [User.current.id] + User.current.group_ids
+  reference_days = 7
   query = IssueQuery.new(:name => l(:new_issues), :user => User.current)
   query.add_filter "status_id", "o"
-  query.add_filter "created_on", ">=", [(Date.today - 7).strftime("%Y-%m-%d")]
+  query.add_filter "created_on", ">=", [(Date.today - reference_days).strftime("%Y-%m-%d")]
   query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
   query.sort_criteria = settings[:sort].presence || [["created_on", "desc"]]
   issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],

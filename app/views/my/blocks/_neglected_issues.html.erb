@@ -1,9 +1,10 @@
 <%=
   current_user_ids = [User.current.id] + User.current.group_ids
+  neglected_days = 7
   query = IssueQuery.new(:name => l(:neglected_issues), :user => User.current)
   query.add_filter "status_id", "o"
   query.add_filter "due_date", "!*"
-  query.add_filter "updated_on", "<=", [(Date.today - 8).strftime("%Y-%m-%d")]
+  query.add_filter "updated_on", "<=", [(Date.today - (neglected_days + 1)).strftime("%Y-%m-%d")]
   query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
   query.sort_criteria = settings[:sort].presence || [["updated_on", "desc"]]
   issues = query.issues(:limit => 30,
