@@ -6,7 +6,7 @@
   query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
   query.sort_criteria = settings[:sort].presence || [["created_on", "desc"]]
   issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],
-                        :conditions => "(issues.status_id = trackers.default_status_id) AND (issues.assigned_to_id in (#{current_user_ids.join(",")}) OR issues.assigned_to_id IS NULL)",
+                        :conditions => ["(issues.status_id = trackers.default_status_id) AND (issues.assigned_to_id in (?) OR issues.assigned_to_id IS NULL)", current_user_ids],
                         :limit => 10)
   render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
 %>

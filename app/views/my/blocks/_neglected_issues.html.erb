@@ -1,5 +1,5 @@
 <%=
-  current_user_ids = ([User.current.id] + User.current.group_ids).join(",")
+  current_user_ids = [User.current.id] + User.current.group_ids
   query = IssueQuery.new(:name => l(:neglected_issues), :user => User.current)
   query.add_filter "status_id", "o"
   query.add_filter "due_date", "!*"
@@ -7,6 +7,6 @@
   query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
   query.sort_criteria = settings[:sort].presence || [["updated_on", "desc"]]
   issues = query.issues(:limit => 30,
-                        :conditions => "issues.assigned_to_id in (#{current_user_ids}) OR issues.assigned_to_id IS NULL")
+                        :conditions => ["issues.assigned_to_id in (?) OR issues.assigned_to_id IS NULL", current_user_ids])
   render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
 %>
