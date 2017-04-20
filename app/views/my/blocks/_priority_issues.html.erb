@@ -30,22 +30,22 @@
 %>
 <% if higher_priority_issues.count > 0 %>
   <h4><%= l(:label_vmpb_higher_priority_issues) %> (<%= higher_priority_issues.count %>)</h4>
-  <%= render :partial => 'issues/list_simple', :locals => {:issues => higher_priority_issues.first(30)} unless higher_priority_issues.empty? %>
+  <%= render :partial => 'my/list_simple', :locals => {:issues => higher_priority_issues.first(30)} unless higher_priority_issues.empty? %>
 <% end %>
 
 <% if overdue_issues.count > 0 %>
   <h4><%= l(:label_vmpb_overdue_issues) %> (<%= overdue_issues.count %>)</h4>
-  <%= render :partial => 'issues/list_simple', :locals => {:issues => overdue_issues.first(30)} unless overdue_issues.empty? %>
+  <%= render :partial => 'my/list_simple', :locals => {:issues => overdue_issues.first(30)} unless overdue_issues.empty? %>
 <% end %>
 
 <% if due_today_issues.count > 0 %>
   <h4><%= l(:label_vmpb_due_today_issues) %> (<%= due_today_issues.count %>)</h4>
-  <%= render :partial => 'issues/list_simple', :locals => {:issues => due_today_issues.first(30)}  unless due_today_issues.empty? %>
+  <%= render :partial => 'my/list_simple', :locals => {:issues => due_today_issues.first(30)}  unless due_today_issues.empty? %>
 <% end %>
 
 <% if near_due_issues.count > 0 %>
   <h4><%= l(:label_vmpb_near_due_issues) %> (<%= near_due_issues.count %>)</h4>
-  <%= render :partial => 'issues/list_simple', :locals => {:issues => near_due_issues.first(30)} unless near_due_issues.empty? %>
+  <%= render :partial => 'my/list_simple', :locals => {:issues => near_due_issues.first(30)} unless near_due_issues.empty? %>
 <% end %>
 
 <p class="small">

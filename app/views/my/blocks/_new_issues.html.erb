@@ -1,12 +1,13 @@
-<%
+<%=
   current_user_ids = [User.current.id] + User.current.group_ids
-  new_issues = Issue.visible.open
-    .joins("inner join trackers on #{Tracker.table_name}.id = tracker_id")
-    .where(["(assigned_to_id in (?) or assigned_to_id is null) and #{Issue.table_name}.created_on >= ? and status_id = #{Tracker.table_name}.default_status_id", current_user_ids, Date.today - 7])
-    .order(created_on: :desc)
+  reference_days = 7
+  query = IssueQuery.new(:name => l(:new_issues), :user => User.current)
+  query.add_filter "status_id", "o"
+  query.add_filter "created_on", ">=", [(Date.today - reference_days).strftime("%Y-%m-%d")]
+  query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
+  query.sort_criteria = settings[:sort].presence || [["created_on", "desc"]]
+  issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],
+                        :conditions => ["(issues.status_id = trackers.default_status_id) AND (issues.assigned_to_id in (?) OR issues.assigned_to_id IS NULL)", current_user_ids],
+                        :limit => 10)
+  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
 %>
-
-
-<h3><%= l(:new_issues) %></h3>
-
-<%= render :partial => 'issues/list_simple', :locals => {:issues => new_issues.first(10)} %>
