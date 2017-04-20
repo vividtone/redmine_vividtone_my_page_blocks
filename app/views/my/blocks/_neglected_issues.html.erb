@@ -1,12 +1,13 @@
-<%
+<%=
   current_user_ids = [User.current.id] + User.current.group_ids
-
-  neglected_issues = Issue.visible.open
-    .where(["(assigned_to_id in (?) or assigned_to_id is null) and due_date is null and #{Issue.table_name}.updated_on < ?", current_user_ids, Date.today - 7])
-    .order(updated_on: :desc)
+  neglected_days = 7
+  query = IssueQuery.new(:name => l(:neglected_issues), :user => User.current)
+  query.add_filter "status_id", "o"
+  query.add_filter "due_date", "!*"
+  query.add_filter "updated_on", "<=", [(Date.today - (neglected_days + 1)).strftime("%Y-%m-%d")]
+  query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
+  query.sort_criteria = settings[:sort].presence || [["updated_on", "desc"]]
+  issues = query.issues(:limit => 30,
+                        :conditions => ["issues.assigned_to_id in (?) OR issues.assigned_to_id IS NULL", current_user_ids])
+  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
 %>
-
-
-<h3><%= l(:neglected_issues) %> (<%= neglected_issues.count %>)</h3>
-
-<%= render :partial => 'issues/list_simple', :locals => {:issues => neglected_issues.first(30)} %>
