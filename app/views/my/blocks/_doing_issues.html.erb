@@ -1,12 +1,12 @@
-<%
+<%=
   current_user_ids = [User.current.id] + User.current.group_ids
-  issues = Issue.visible.open
-    .joins("inner join trackers on #{Tracker.table_name}.id = tracker_id")
-    .where(["assigned_to_id in (?) and status_id <> #{Tracker.table_name}.default_status_id", current_user_ids])
-    .order(created_on: :desc)
+  query = IssueQuery.new(:name => l(:doing_issues), :user => User.current)
+  query.add_filter "status_id", "o"
+  query.add_filter "assigned_to_id", "=", current_user_ids
+  query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
+  query.sort_criteria = settings[:sort].presence || [["created_on", "desc"]]
+  issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],
+                        :conditions => "issues.status_id <> trackers.default_status_id",
+                        :limit => 30)
+  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
 %>
-
-
-<h3><%= l(:doing_issues) %> (<%= issues.count %>)</h3>
-
-<%= render :partial => 'issues/list_simple', :locals => {:issues => issues.first(30)} %>
