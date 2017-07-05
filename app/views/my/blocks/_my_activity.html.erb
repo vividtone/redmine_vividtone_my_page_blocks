@@ -2,9 +2,10 @@
   current_user = User.current
   events = Redmine::Activity::Fetcher.new(current_user, :author => current_user).events(nil, nil, :limit => 10)
   events_by_day = events.group_by(&:event_date)
+  my_activity_url = url_for(:controller => 'activities', :action => 'index', :id => nil, :user_id => current_user, :from => events_by_day.keys.first)
 %>
 
-<h3><%= l(:my_activity) %></h3>
+<h3><%= link_to l(:my_activity), my_activity_url %></h3>
 
 <div id="activity">
 <% events_by_day.keys.sort.reverse.each do |day| %>
@@ -21,4 +22,4 @@
 <% end -%>
 </div>
 
-<p class="small"><%= link_to l(:label_vmpb_all_my_activities), :controller => 'activities', :action => 'index', :id => nil, :user_id => current_user, :from => events_by_day.keys.first %> | <%= link_to l(:label_vmpb_overall_activities), :controller => 'activities', :action => 'index' %></p>
+<p class="small"><%= link_to l(:label_vmpb_overall_activities), :controller => 'activities', :action => 'index' %></p>

@@ -1,0 +1,36 @@
+<%# The original of this file is 'app/views/my/blocks/_issues.erb' %>
+<div class="contextual">
+  <%= link_to_function l(:label_options), "$('##{block}-settings').toggle();", :class => 'icon-only icon-settings', :title => l(:label_options) %>
+</div>
+
+<h3>
+  <%= "#{query.project} |" if query.project %>
+  <%= query.name %>
+  (<%= issues.count %>)
+</h3>
+
+<div id="<%= block %>-settings" style="display:none;">
+  <%= form_tag(my_page_path, :remote => true) do %>
+    <div class="box">
+      <%= render_query_columns_selection(query, :name => "settings[#{block}][columns]") %>
+    </div>
+    <p>
+      <%= submit_tag l(:button_save) %>
+      <%= link_to_function l(:button_cancel), "$('##{block}-settings').toggle();" %>
+    </p>
+  <% end %>
+</div>
+
+<% if issues.any? %>
+  <%= render :partial => 'issues/list',
+             :locals => {
+               :issues => issues,
+               :query => query,
+               :query_options => {
+                 :sort_param => "settings[#{block}][sort]",
+                 :sort_link_options => {:method => :post, :remote => true}
+               }
+             } %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
