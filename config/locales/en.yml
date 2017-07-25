@@ -11,3 +11,5 @@ en:
   label_vmpb_all_my_issues: "All my issues"
   label_vmpb_overall_issues: "All issues"
   label_vmpb_overall_activities: "All activities"
+  label_vmpb_neglected_days: "Last update date is more than %{days} days ago"
+  label_vmpb_reference_days: "Last created in %{days} days"

@@ -13,6 +13,13 @@
   <%= form_tag(my_page_path, :remote => true) do %>
     <div class="box">
       <%= render_query_columns_selection(query, :name => "settings[#{block}][columns]") %>
+      <% if days.present? %>
+        <div>
+          <%= l(:button_show) %>:
+          <%= text_field_tag "settings[#{block}][days]", days, :size => 6 %>
+          <%= l(:label_day_plural) %>
+        </div>
+      <% end %>
     </div>
     <p>
       <%= submit_tag l(:button_save) %>

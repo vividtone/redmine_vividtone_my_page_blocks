@@ -8,5 +8,5 @@
   issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],
                         :conditions => "issues.status_id <> trackers.default_status_id",
                         :limit => 30)
-  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
+  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block, :days => nil}
 %>
