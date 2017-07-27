@@ -1,7 +1,7 @@
 <%=
   current_user_ids = [User.current.id] + User.current.group_ids
-  reference_days = 7
-  query = IssueQuery.new(:name => l(:new_issues), :user => User.current)
+  reference_days = settings[:days].present? ? settings[:days].to_i : 7
+  query = IssueQuery.new(:name => l(:new_issues) + ": " + l('label_vmpb_reference_days', :days =>  reference_days), :user => User.current)
   query.add_filter "status_id", "o"
   query.add_filter "created_on", ">=", [(Date.today - reference_days).strftime("%Y-%m-%d")]
   query.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
@@ -9,5 +9,5 @@
   issues = query.issues(:include => settings[:sort].try(:include?, "tracker") ? [] : [:tracker],
                         :conditions => ["(issues.status_id = trackers.default_status_id) AND (issues.assigned_to_id in (?) OR issues.assigned_to_id IS NULL)", current_user_ids],
                         :limit => 10)
-  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block}
+  render :partial => "my/my_page_blocks_issues", :locals => {:query => query, :issues => issues, :block => block, :days => reference_days}
 %>
