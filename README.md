@@ -31,11 +31,6 @@ following conditions are displayed.
 * no updates for 7 days
 * due date is not set.
 
-### My Activities
-
-Show the users last 10 activities.
-
-
 ## Installation
 
 ```
