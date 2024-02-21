@@ -12,7 +12,11 @@
 <div id="<%= block %>-settings" style="display:none;">
   <%= form_tag(my_page_path, :remote => true) do %>
     <div class="box">
-      <%= render_query_columns_selection(query, :name => "settings[#{block}][columns]") %>
+      <div id="list-definition">
+        <div>
+          <%= render_query_columns_selection(query, :name => "settings[#{block}][columns]") %>
+        </div>
+      </div>
     </div>
     <p>
       <%= submit_tag l(:button_save) %>
