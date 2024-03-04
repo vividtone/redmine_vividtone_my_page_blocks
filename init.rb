@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_vividtone_my_page_blocks do
   name 'My Page Blocks plugin'
   author 'MAEDA Go (FAR END Technologies)'
   description 'Add some my page blocks'
-  version '2017/07/05'
+  version '1.3'
   url 'http://blog.redmine.jp/articles/my-page-blocks-plugin/'
-  author_url 'http://twitter.com/g_maeda'
+  author_url 'https://twitter.com/g_maeda'
 end
