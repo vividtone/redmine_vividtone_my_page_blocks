@@ -1,6 +1,11 @@
 <%# The original of this file is 'app/views/my/blocks/_issues.erb' %>
 <div class="contextual">
-  <%= link_to_function l(:label_options), "$('##{block}-settings').toggle();", :class => 'icon-only icon-settings', :title => l(:label_options) %>
+  <%# If Redmine version is 6.0 or later, use the SVG icon introduced in Redmine 6.0 %>
+  <% if Gem::Version.new(Redmine::VERSION.to_s) >= Gem::Version.new('6.0.0') %>
+    <%= link_to_function sprite_icon('settings', l(:label_options)), "$('##{block}-settings').toggle();", :class => 'icon-only', :title => l(:label_options) %>
+  <% else %>
+    <%= link_to_function l(:label_options), "$('##{block}-settings').toggle();", :class => 'icon-only icon-settings', :title => l(:label_options) %>
+  <% end %>
 </div>
 
 <h3>
